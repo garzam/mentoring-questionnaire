@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 120px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mentor Questionnaire</h1>
+    <form action="/submit" method="post">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+   
+        <label for="current_role">Current Role & Area of Expertise</label>
+        <input type="text" id="current_role" name="current_role" required>
+
+        <label for="previous_role">Previous Roles & Areas of Expertise</label>
+        <input type="text" id="previous_role" name="previous_role" required>
+ 
+        <label for="mentor_status">What is your current Mentor Status?</label>
+        <select id="mentor_status" name="mentor_status" required>
+            <option value="Mentor">Mentor</option>            
+            <option value="Mentor(Looking)">Mentor Looking</option>
+            <option value="Not Interested">Not Interested</option>
+        </select>
+
+        <label for="mentee_name">Provide the Name of Your Current Mentee</label>
+        <input type="text" id="mentee_name" name="mentee_name" required>
+
+        <label for="experience_years">How many years of mentoring experience do you have?</label>
+        <select id="experience_years" name="experience_years" required>
+            <option value="None">None</option>            
+            <option value="1-2">1-2 years</option>
+            <option value="3-5">3-5 years</option>
+            <option value="5+">5+ years</option>
+        </select>
+ 
+        <label for="number_of_mentees">How many mentees are you currently mentoring?</label>
+        <select id="number_of_mentees" name="number_of_mentees" required>
+            <option value="None">None</option>            
+            <option value="One">One</option>
+            <option value="More than One">More than One</option>
+        </select>
+
+        <label for="experience_years">Interested or Willing to Mentor More Than One Mentee?</label>
+        <select id="number_of_mentees" name="number_of_mentees" required>
+            <option value="Yes">Yes</option>            
+            <option value="No">No</option>
+        </select>
+
+       <label for="skills">Areas of Expertise to Discuss with a Mentee</label>
+        <textarea id="skills" name="skills" required></textarea>
+ 
+        <label for="skills">Skills to Share with a Mentee (Career Development, Personal Growth, Technical Skills, etc.)</label>
+        <textarea id="skills" name="skills" required></textarea>
+
+        <label for="mentorship_format">Preferred Mentorship Format (One-on-One, Online, In-Person, Combination)</label>
+       <select id="mentorship_format" name="mentorship_format" required>
+            <option value="One-on-One">One-on-One</option>            
+            <option value="Online">Online</option>
+            <option value="In-Person">In-Person</option>
+            <option value="Combination">Combination</option>
+        </select>
+
+        <label for="mentee_expectations">What do you expect from your mentee?</label>
+        <input type="text" id="mentee_expectations" name="mentee_expectations" required>
+
+        <label for="hours_per_month">How many times per month are you available to dedicate to mentoring?</label>
+        <select id="days_per_month" name="days_per_month" required>
+            <option value="Once">Once a Month</option>
+            <option value="Twice">Twice a Month</option>
+            <option value="None">Not Available</option>
+        </select>
+
+        <label for="available_days">What days of the week are you generally available for mentoring?</label>
+        <input type="text" id="available_days" name="available_days" required>
+
+        <label for="available_times">What times of the day are you most available for mentoring?</label>
+        <select id="available_times" name="available_times" required>
+            <option value="AM">Mornings</option>
+            <option value="PM">Afternoons</option>
+            <option value="ANY">No Preference</option>
+        </select>
+
+        <label for="mentoring_mode">Are you open to mentoring virtually or prefer in-person meetings?</label>
+        <select id="mentoring_mode" name="mentoring_mode" required>
+            <option value="Virtual">Virtual</option>
+            <option value="In-Person">In-Person</option>
+            <option value="Both">Both</option>
+        </select>
+
+        <label for="comments">Do you have any additional comments or preferences regarding your mentoring availability or style?</label>
+        <textarea id="comments" name="comments"></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>

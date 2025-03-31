@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentee Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 120px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mentee Questionnaire</h1>
+    <form action="/submit" method="post">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" required>
+
+        <label for="email">Email</label>
+        <input type="email" id="email" name="email" required>
+
+        <label for="current_role">What is your current role?</label>
+        <input type="text" id="current_role" name="current_role" required>
+
+        <label for="mentee_status">What is your current Mentee Status?</label>
+        <select id="mentee_status" name="mentee_status" required>
+            <option value="Mentee">Mentee</option>            
+            <option value="Mentee(Looking)">Mentee Looking</option>
+            <option value="Not Interested">Not Interested</option>
+        </select>
+
+        <label for="mentor_type">Do you have a Career or Technical Mentor?</label>
+        <select id="mentor_type" name="mentor_type" required>
+            <option value="Career">Career</option>            
+            <option value="Technical">Technical</option>
+            <option value="Both">Both</option>
+            <option value="None">None</option>
+        </select>
+
+        <label for="mentor_name">Provide the Name of Your Career Mentor(s)</label>
+        <input type="text" id="mentor_name" name="mentor_name" required>
+
+        <label for="mentor_name">Provide the Name of Your Technical Mentor(s)</label>
+        <input type="text" id="mentor_name" name="mentor_name" required>
+  
+        <label for="skills_to_develop">What specific skills have you learned from your current mentor(s)?</label>
+        <textarea id="skills_to_develop" name="skills_to_develop" required></textarea>
+
+        <label for="experience_years">Interested in Finding New Career or Technical Mentor(s)?</label>
+        <select id="number_of_mentees" name="number_of_mentees" required>
+            <option value="YC">Yes, Career</option>            
+            <option value="YT">Yes, Technical</option>
+            <option value="YB">Yes, Both</option>            
+            <option value="NO">Not Interested</option>
+
+        </select>
+
+        <label for="career_goals">What are your short-term career goals?</label>
+        <input type="text" id="career_goals" name="career_goals" required>
+
+        <label for="areas_for_growth">What are the areas you would like to grow or improve in?</label>
+        <input type="text" id="areas_for_growth" name="areas_for_growth" required>
+
+        <label for="skills_to_develop">What specific skills would you like to develop with the help of a mentor?</label>
+        <textarea id="skills_to_develop" name="skills_to_develop" required></textarea>
+
+        <label for="available_times">What times of the day are you most available for mentorship sessions?</label>
+        <select id="available_times" name="available_times" required>
+            <option value="AM">Mornings</option>
+            <option value="PM">Afternoons</option>
+            <option value="ANY">No Preference</option>
+        </select>
+
+        <label for="mentoring_mode">Are you open to mentoring virtually or prefer in-person meetings?</label>
+        <select id="mentoring_mode" name="mentoring_mode" required>
+            <option value="Virtual">Virtual</option>
+            <option value="In-Person">In-Person</option>
+            <option value="Both">Both</option>
+        </select>
+
+        <label for="ultimate_career_aspirations">What are your ultimate career aspirations?</label>
+        <textarea id="ultimate_career_aspirations" name="ultimate_career_aspirations" required></textarea>
+
+        <button type="submit">Submit</button>
+    </form>
+</div>
+
+</body>
+</html>
