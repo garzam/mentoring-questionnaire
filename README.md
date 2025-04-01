@@ -11,6 +11,10 @@ This repository contains an HTML form designed for mentees to fill out during a 
 
 You can view a live version of this project hosted on GitHub Pages:  
 ## [https://username.github.io/mentee-questionnaire] (https://username.github.io/mentee-questionnaire)
+## Mentee Questionnaire
+https://garzam.github.io/mentoring-questionnaire/mentee_questionnaire.html
+## Mentor Questionnaire
+https://garzam.github.io/mentoring-questionnaire/mentor_questionnaire.html
 
 ## How to Use
 
