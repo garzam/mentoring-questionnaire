@@ -194,12 +194,17 @@
             },
             body: JSON.stringify(requestBody)
         })
-        .then(response => response.json())
-        .then(data => {
-            if (data.content) {
+        .then(response => {
+            return response.json().then(data => ({ status: response.status, data }));
+        })
+        .then(({ status, data }) => {
+            console.log("Response Status:", status);
+            console.log("Response Data:", data);
+
+            if (status === 201) {
                 alert("Excel file successfully uploaded to GitHub!");
             } else {
-                alert("Failed to upload the file to GitHub.");
+                alert("Failed to upload the file to GitHub. Check the console for details.");
             }
         })
         .catch(error => {
