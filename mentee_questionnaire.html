@@ -11,6 +11,12 @@
             padding: 0;
             background-color: #f4f7fc;
         }
+        /* CSS set smaller font size for specific element */
+        .smaller-text {
+            font-size: 0.9em;
+            text-align: center;
+            color: #333
+        }
         .container {
             max-width: 800px;
             margin: 50px auto;
@@ -59,15 +65,15 @@
 
 <div class="container">
     <h1>Mentee Questionnaire</h1>
+    <div class="smaller-text">
+        <p>Please do not enter any confidential details in this form</p>
+    </div>
     <form action="/submit" method="post">
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" name="first_name" required>
 
         <label for="last_name">Last Name</label>
         <input type="text" id="last_name" name="last_name" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
 
         <label for="current_role">What is your current role?</label>
         <input type="text" id="current_role" name="current_role" required>
@@ -94,7 +100,7 @@
         <input type="text" id="mentor_name" name="mentor_name" required>
   
         <label for="skills_to_develop">What specific skills have you learned from your current mentor(s)?</label>
-        <textarea id="skills_to_develop" name="skills_to_develop" required></textarea>
+        <input type="text" id="skills_to_develop" name="skills_to_develop" required>
 
         <label for="experience_years">Interested in Finding New Career or Technical Mentor(s)?</label>
         <select id="number_of_mentees" name="number_of_mentees" required>
