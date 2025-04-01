@@ -176,6 +176,19 @@
         // GitHub Personal Access Token (replace with your token)
         const token = "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";  // Replace this with your actual GitHub token YOUR_GITHUB_TOKEN
 
+        // Test API
+        fetch("https://api.github.com/user", {
+        method: "GET",
+        headers: {
+            "Authorization": `token ${token}`
+         }
+        })
+        .then(response => response.json())
+        .then(data => console.log(data))  // This will show your GitHub user details
+        .catch(error => console.error("Error:", error));
+
+
+        
         // Prepare the request body
         const requestBody = {
             message: "Add mentor questionnaire Excel file",
