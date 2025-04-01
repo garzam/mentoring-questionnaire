@@ -11,6 +11,12 @@
             padding: 0;
             background-color: #f4f7fc;
         }
+       /* CSS set smaller font size for specific element */
+        .smaller-text {
+            font-size: 0.9em;
+            text-align: center;
+            color: #333
+        }
         .container {
             max-width: 800px;
             margin: 50px auto;
@@ -59,16 +65,16 @@
 
 <div class="container">
     <h1>Mentor Questionnaire</h1>
+    <div class="smaller-text">
+        <p>Please do not enter any confidential details in this form</p>
+    </div>
     <form action="/submit" method="post">
         <label for="first_name">First Name</label>
         <input type="text" id="first_name" name="first_name" required>
 
         <label for="last_name">Last Name</label>
         <input type="text" id="last_name" name="last_name" required>
-
-        <label for="email">Email</label>
-        <input type="email" id="email" name="email" required>
-   
+  
         <label for="current_role">Current Role & Area of Expertise</label>
         <input type="text" id="current_role" name="current_role" required>
 
@@ -110,9 +116,9 @@
         <textarea id="skills" name="skills" required></textarea>
  
         <label for="skills">Skills to Share with a Mentee (Career Development, Personal Growth, Technical Skills, etc.)</label>
-        <textarea id="skills" name="skills" required></textarea>
+        <input type="text" id="skills" name="skills" required>
 
-        <label for="mentorship_format">Preferred Mentorship Format (One-on-One, Online, In-Person, Combination)</label>
+       <label for="mentorship_format">Preferred Mentorship Format (One-on-One, Online, In-Person, Combination)</label>
        <select id="mentorship_format" name="mentorship_format" required>
             <option value="One-on-One">One-on-One</option>            
             <option value="Online">Online</option>
