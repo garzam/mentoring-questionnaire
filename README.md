@@ -12,5 +12,9 @@ This repository contains an HTML form designed for mentors and mentees to collec
 You can view a live version of this project hosted on GitHub Pages:  
 ## Mentee Questionnaire
 https://garzam.github.io/mentoring-questionnaire/mentee_questionnaire.html
+
 ## Mentor Questionnaire
 https://garzam.github.io/mentoring-questionnaire/mentor_questionnaire.html
+
+## Mentor Questionnaire - Excel
+https://github.com/garzam/mentoring-questionnaire/blob/main/Mentor-Questionnaire-GitHubAPI.html
