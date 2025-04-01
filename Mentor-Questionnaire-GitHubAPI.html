@@ -170,11 +170,11 @@
         const base64File = btoa(String.fromCharCode.apply(null, new Uint8Array(excelFile)));
 
         // Define your GitHub Repository details
-        const repoOwner = 'garzam';
-        const repoName = 'mentoring-questionnaire';
-        const filePath = 'Questionnaire-Submission/mentor_questionnaire.xlsx';
+        const repoOwner = 'garzam'; // GitHub username or organization
+        const repoName = 'mentoring-questionnaire';  // Name of the repository
+        const filePath = 'Questionnaire-Submission/mentor_questionnaire.xlsx';  // Path inside the repository where the file will be uploaded
         const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
-
+        
         // Fine-Grained Personal Access Token (replace with your token)
         const token = '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'; // Replace with your actual token
 
