@@ -1,0 +1,67 @@
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Get the form data
+    $first_name = htmlspecialchars($_POST['first_name']);
+    $last_name = htmlspecialchars($_POST['last_name']);
+    $current_role = htmlspecialchars($_POST['current_role']);
+    $mentee_status = htmlspecialchars($_POST['mentee_status']);
+    $mentor_type = htmlspecialchars($_POST['mentor_type']);
+    $mentor_name = htmlspecialchars($_POST['mentor_name']);
+    $skills_to_develop = htmlspecialchars($_POST['skills_to_develop']);
+    $number_of_mentees = htmlspecialchars($_POST['number_of_mentees']);
+    $career_goals = htmlspecialchars($_POST['career_goals']);
+    $areas_for_growth = htmlspecialchars($_POST['areas_for_growth']);
+    $available_times = htmlspecialchars($_POST['available_times']);
+    $mentoring_mode = htmlspecialchars($_POST['mentoring_mode']);
+    $ultimate_career_aspirations = htmlspecialchars($_POST['ultimate_career_aspirations']);
+
+    // Create content for the text file
+    $content = "Mentee Questionnaire Submission\n";
+    $content .= "---------------------------------\n";
+    $content .= "First Name: $first_name\n";
+    $content .= "Last Name: $last_name\n";
+    $content .= "Current Role: $current_role\n";
+    $content .= "Mentee Status: $mentee_status\n";
+    $content .= "Mentor Type: $mentor_type\n";
+    $content .= "Mentor Name(s): $mentor_name\n";
+    $content .= "Skills to Develop: $skills_to_develop\n";
+    $content .= "Interested in Finding New Mentor(s): $number_of_mentees\n";
+    $content .= "Short-term Career Goals: $career_goals\n";
+    $content .= "Areas for Growth: $areas_for_growth\n";
+    $content .= "Skills to Develop with Mentor: $skills_to_develop\n";
+    $content .= "Available Times: $available_times\n";
+    $content .= "Mentoring Mode: $mentoring_mode\n";
+    $content .= "Ultimate Career Aspirations: $ultimate_career_aspirations\n";
+    $content .= "\n\n";
+
+    // Define the path for saving the text file
+    $file_path = "submissions/mentee_submission_" . time() . ".txt"; // Use timestamp for unique filenames
+
+    // Create the 'submissions' folder if it doesn't exist
+    if (!file_exists('submissions')) {
+        mkdir('submissions', 0777, true);
+    }
+
+    // Write the content to a text file
+    if (file_put_contents($file_path, $content)) {
+        echo "Thank you for submitting your information. The results have been saved successfully.";
+    } else {
+        echo "Sorry, there was an error saving your submission. Please try again later.";
+    }
+
+    // Git push: Ensure your server has Git installed and the repo is cloned locally
+    $git_repo_path = '/path/to/your/repository'; // Path to the GitHub repository on your server
+    chdir($git_repo_path); // Change the current working directory to the repo folder
+
+    // Add the file to the git repository
+    exec("git add $file_path");
+
+    // Commit the changes
+    $commit_message = "Add new mentee submission: " . time();
+    exec("git commit -m '$commit_message'");
+
+    // Push the changes to the GitHub repository
+    exec("git push origin main");  // Assumes you're pushing to the main branch, change if necessary
+
+}
+?>
