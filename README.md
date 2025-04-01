@@ -1,6 +1,6 @@
-# Mentee Questionnaire
+# Mentor & Mentee Questionnaire
 
-This repository contains an HTML form designed for mentees to fill out during a mentoring program. The form collects essential information such as personal details, career goals, preferred learning style, and mentorship expectations.
+This repository contains an HTML form designed for mentors and mentees to collect essential information about career goals, preferred learning styles, and mentorship expectations. Once you complete the form, the information will be used to pair you with an appropriate mentor or mentee. The information provided will be reviewed, and you can expect to receive a notification with the results within 1-2 weeks.
 
 ## Features
 
