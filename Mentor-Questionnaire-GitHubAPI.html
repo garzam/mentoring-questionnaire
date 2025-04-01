@@ -167,7 +167,7 @@
         const excelFile = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
 
         // Convert the file to base64 to send it via GitHub API
-        const base64File = btoa(String.fromCharCode.apply(null, new Uint8Array(excelFile)));
+        const base64File = arrayBufferToBase64(excelFile);
 
         // Define your GitHub Repository details
         const repoOwner = 'garzam'; // GitHub username or organization
@@ -207,6 +207,12 @@
             alert("An error occurred while uploading the file to GitHub.");
         });
     });
+
+    // Helper function to convert array buffer to base64
+    function arrayBufferToBase64(buffer) {
+        const binary = String.fromCharCode.apply(null, new Uint8Array(buffer));
+        return window.btoa(binary);
+    }
 </script>
 
 </body>
