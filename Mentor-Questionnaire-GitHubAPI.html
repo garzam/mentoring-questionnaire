@@ -11,7 +11,6 @@
             padding: 0;
             background-color: #f4f7fc;
         }
-        /* CSS set smaller font size for specific element */
         .smaller-text {
             font-size: 0.9em;
             text-align: center;
@@ -164,39 +163,29 @@
         // Add the sheet to the workbook
         XLSX.utils.book_append_sheet(wb, ws, "Mentor Data");
 
-        // Convert the Excel file to a binary string (this is required to upload to GitHub)
-        const excelFile = XLSX.write(wb, { bookType: "xlsx", type: "binary" });
+        // Generate the Excel file as a Blob
+        const excelFile = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
 
-        // Convert binary string to base64
-        const base64ExcelFile = btoa(excelFile);
+        // Convert the file to base64 to send it via GitHub API
+        const base64File = btoa(String.fromCharCode.apply(null, new Uint8Array(excelFile)));
 
-        // GitHub API URL for creating or updating a file in a repo
-        const apiUrl = "https://api.github.com/repos/garzam/mentoring-questionnaire/contents/Questionnaire-Submission/mentor_questionnaire.xlsx";
+        // Define your GitHub Repository details
+        const repoOwner = 'garzam';
+        const repoName = 'mentoring-questionnaire';
+        const filePath = 'Questionnaire-Submission/mentor_questionnaire.xlsx';
+        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
 
-        // GitHub Personal Access Token (replace with your token)
-        const token = "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";  // Replace this with your actual GitHub token YOUR_GITHUB_TOKEN
+        // Fine-Grained Personal Access Token (replace with your token)
+        const token = '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'; // Replace with your actual token
 
-        // Test API
-        fetch("https://api.github.com/user", {
-        method: "GET",
-        headers: {
-            "Authorization": `token ${token}`
-         }
-        })
-        .then(response => response.json())
-        .then(data => console.log(data))  // This will show your GitHub user details
-        .catch(error => console.error("Error:", error));
-
-
-        
-        // Prepare the request body
+        // Prepare the request body for GitHub API
         const requestBody = {
-            message: "Add mentor questionnaire Excel file",
-            content: base64ExcelFile,  // The file content in base64 format
-            branch: "main"  // Or use your desired branch name
+            message: "Upload mentor questionnaire Excel file",
+            content: base64File,  // Base64 encoded content
+            branch: "main"        // Specify the branch (e.g., "main" or "master")
         };
 
-        // Make the API call to GitHub to upload the file
+        // Upload the file to GitHub using the GitHub API
         fetch(apiUrl, {
             method: "PUT",
             headers: {
