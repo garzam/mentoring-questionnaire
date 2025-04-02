@@ -17,4 +17,4 @@ https://garzam.github.io/mentoring-questionnaire/mentee_questionnaire.html
 https://garzam.github.io/mentoring-questionnaire/mentor_questionnaire.html
 
 ## Mentor Questionnaire - Excel
-https://garzam.github.io/mentoring-questionnaire/Mentor-Questionnaire-GitHubAPI.html
+https://garzam.github.io/mentoring-questionnaire/Mentor-Questionnaire-Generate-ExcelFile.html
