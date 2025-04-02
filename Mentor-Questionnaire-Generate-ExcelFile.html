@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mentor Questionnaire</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f7fc;
+        }
+        .smaller-text {
+            font-size: 0.9em;
+            text-align: center;
+            color: #333
+        }
+        .container {
+            max-width: 800px;
+            margin: 50px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        label {
+            font-weight: bold;
+            margin-top: 10px;
+            display: block;
+        }
+        input[type="text"], input[type="email"], textarea, select {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        textarea {
+            height: 120px;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            display: block;
+            width: 100%;
+            margin-top: 20px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.4/xlsx.full.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <h1>Mentor Questionnaire</h1>
+    <div class="smaller-text">
+        <p>Please do not enter any confidential details in this form</p>
+    </div>
+    <form id="mentorForm">
+        <label for="first_name">First Name</label>
+        <input type="text" id="first_name" name="first_name" required>
+
+        <label for="last_name">Last Name</label>
+        <input type="text" id="last_name" name="last_name" required>
+   
+        <label for="current_role">Current Role & Area of Expertise</label>
+        <input type="text" id="current_role" name="current_role" required>
+
+        <label for="previous_role">Previous Roles & Areas of Expertise</label>
+        <input type="text" id="previous_role" name="previous_role" required>
+ 
+        <label for="mentor_status">What is your current Mentor Status?</label>
+        <select id="mentor_status" name="mentor_status" required>
+            <option value="Mentor">Mentor</option>            
+            <option value="Mentor(Looking)">Mentor Looking</option>
+            <option value="Not Interested">Not Interested</option>
+        </select>
+
+        <label for="mentee_name">Provide the Name of Your Current Mentee</label>
+        <input type="text" id="mentee_name" name="mentee_name" required>
+
+        <label for="experience_years">How many years of mentoring experience do you have?</label>
+        <select id="experience_years" name="experience_years" required>
+            <option value="None">None</option>            
+            <option value="1-2">1-2 years</option>
+            <option value="3-5">3-5 years</option>
+            <option value="5+">5+ years</option>
+        </select>
+ 
+        <label for="number_of_mentees">How many mentees are you currently mentoring?</label>
+        <select id="number_of_mentees" name="number_of_mentees" required>
+            <option value="None">None</option>            
+            <option value="One">One</option>
+            <option value="More than One">More than One</option>
+        </select>
+
+        <label for="skills">Skills to Share with a Mentee (Career Development, Personal Growth, Technical Skills, etc.)</label>
+        <textarea id="skills" name="skills" required></textarea>
+
+        <label for="mentorship_format">Preferred Mentorship Format (One-on-One, Online, In-Person, Combination)</label>
+        <select id="mentorship_format" name="mentorship_format" required>
+            <option value="One-on-One">One-on-One</option>            
+            <option value="Online">Online</option>
+            <option value="In-Person">In-Person</option>
+            <option value="Combination">Combination</option>
+        </select>
+
+        <label for="hours_per_month">How many times per month are you available to dedicate to mentoring?</label>
+        <select id="days_per_month" name="days_per_month" required>
+            <option value="Once">Once a Month</option>
+            <option value="Twice">Twice a Month</option>
+            <option value="None">Not Available</option>
+        </select>
+
+        <button type="submit">Generate Excel</button>
+    </form>
+</div>
+
+<script>
+    document.getElementById('mentorForm').addEventListener('submit', function (event) {
+        event.preventDefault();  // Prevent the default form submission
+
+        // Collect form data
+        const formData = new FormData(event.target);
+        const formObject = {};
+        formData.forEach((value, key) => {
+            formObject[key] = value;
+        });
+
+        // Convert form data into a format suitable for Excel as columns
+        const data = [
+            ["Field", "Response"]
+        ];
+
+        // Define form fields to collect
+        const fields = [
+            "first_name", "last_name", "email", "current_role", "previous_role", "mentor_status", 
+            "mentee_name", "experience_years", "number_of_mentees", "skills", "mentorship_format", 
+            "days_per_month"
+        ];
+
+        // Create a new array where each row corresponds to a field and its value
+        fields.forEach(field => {
+            data.push([field.replace(/_/g, ' ').toUpperCase(), formObject[field]]);
+        });
+
+        // Create a new workbook and sheet
+        const wb = XLSX.utils.book_new();
+        const ws = XLSX.utils.aoa_to_sheet(data);
+
+        // Add the sheet to the workbook
+        XLSX.utils.book_append_sheet(wb, ws, "Mentor Data");
+
+        // Generate the Excel file as a Blob
+        const excelFile = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+
+        // Create a Blob from the Excel data
+        const blob = new Blob([excelFile], { type: 'application/octet-stream' });
+
+        // Create an object URL for the Blob
+        const downloadLink = document.createElement('a');
+        downloadLink.href = URL.createObjectURL(blob);
+        downloadLink.download = 'mentor_questionnaire.xlsx';  // Define the file name
+
+        // Trigger the download
+        downloadLink.click();
+    });
+</script>
+
+</body>
+</html>
