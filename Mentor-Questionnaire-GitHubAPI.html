@@ -11,6 +11,7 @@
             padding: 0;
             background-color: #f4f7fc;
         }
+        /* CSS set smaller font size for specific element */
         .smaller-text {
             font-size: 0.9em;
             text-align: center;
@@ -144,80 +145,40 @@
             ["Field", "Response"]
         ];
 
-        // Define form fields to collect
         const fields = [
             "first_name", "last_name", "email", "current_role", "previous_role", "mentor_status", 
             "mentee_name", "experience_years", "number_of_mentees", "skills", "mentorship_format", 
             "days_per_month"
         ];
 
-        // Create a new array where each row corresponds to a field and its value
         fields.forEach(field => {
             data.push([field.replace(/_/g, ' ').toUpperCase(), formObject[field]]);
         });
 
-        // Create a new workbook and sheet
         const wb = XLSX.utils.book_new();
         const ws = XLSX.utils.aoa_to_sheet(data);
-
-        // Add the sheet to the workbook
         XLSX.utils.book_append_sheet(wb, ws, "Mentor Data");
 
-        // Generate the Excel file as a Blob
         const excelFile = XLSX.write(wb, { bookType: 'xlsx', type: 'array' });
+        const base64ExcelFile = btoa(String.fromCharCode.apply(null, new Uint8Array(excelFile)));
 
-        // Convert the file to base64 to send it via GitHub API
-        const base64File = arrayBufferToBase64(excelFile);
-
-        // Define your GitHub Repository details
-        const repoOwner = 'garzam'; // GitHub username or organization
-        const repoName = 'mentoring-questionnaire';  // Name of the repository
-        const filePath = 'Questionnaire-Submission/mentor_questionnaire.xlsx';  // Path inside the repository where the file will be uploaded
-        const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${filePath}`;
-        
-        // Fine-Grained Personal Access Token (replace with your token)
-        const token = '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'; // Replace with your actual token
-
-        // Prepare the request body for GitHub API
-        const requestBody = {
-            message: "Upload mentor questionnaire Excel file",
-            content: base64File,  // Base64 encoded content
-            branch: "main"        // Specify the branch (e.g., "main" or "master")
-        };
-
-        // Upload the file to GitHub using the GitHub API
-        fetch(apiUrl, {
-            method: "PUT",
+        // Send the base64-encoded file content to the backend server
+        fetch('/upload-to-github', {
+            method: 'POST',
             headers: {
-                "Authorization": `token ${token}`,
-                "Content-Type": "application/json"
+                'Content-Type': 'application/json',
             },
-            body: JSON.stringify(requestBody)
+            body: JSON.stringify({ fileContent: base64ExcelFile }),
         })
-        .then(response => {
-            return response.json().then(data => ({ status: response.status, data }));
-        })
-        .then(({ status, data }) => {
-            console.log("Response Status:", status);
-            console.log("Response Data:", data);
-
-            if (status === 201) {
-                alert("Excel file successfully uploaded to GitHub!");
-            } else {
-                alert("Failed to upload the file to GitHub. Check the console for details.");
-            }
+        .then(response => response.json())
+        .then(data => {
+            alert(data.message); // Show success message
         })
         .catch(error => {
-            console.error("Error uploading to GitHub:", error);
-            alert("An error occurred while uploading the file to GitHub.");
+            console.error('Error:', error);
+            alert('An error occurred while uploading the file.');
         });
     });
-
-    // Helper function to convert array buffer to base64
-    function arrayBufferToBase64(buffer) {
-        const binary = String.fromCharCode.apply(null, new Uint8Array(buffer));
-        return window.btoa(binary);
-    }
 </script>
 
 </body>
