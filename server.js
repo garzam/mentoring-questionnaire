@@ -13,7 +13,7 @@ const branch = 'main';  // The GitHub branch to upload to
 const fileContent = fs.readFileSync(filePath, { encoding: 'base64' });
 
 // GitHub API URL for uploading a file
-const apiUrl = `https://api.github.com/repos/your-username/your-repository-name/contents/${fileName}`;
+const apiUrl = `https://api.github.com/repos/garzam/mentoring-questionnaire/contents/${fileName}`;
 
 // Prepare the request body
 const requestBody = JSON.stringify({
@@ -26,7 +26,7 @@ const requestBody = JSON.stringify({
 const options = {
     hostname: 'api.github.com',
     port: 443,
-    path: `/repos/your-username/your-repository-name/contents/${fileName}`,
+    path: `/repos/garzam/mentoring-questionnaire/contents/${fileName}`,
     method: 'PUT',
     headers: {
         'Authorization': `token ${process.env.GITHUB_TOKEN}`,
